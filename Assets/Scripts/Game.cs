@@ -6,9 +6,12 @@ namespace DefaultNamespace
 {
     public class Game : MonoBehaviour
     {
+        [SerializeField] private Camera _camera;
+        public Camera Camera => _camera;
+        
         [SerializeField]
         private UIPreset _uiPreset;
-        
+
         public IUIService UIService { get; private set; }
 
         public static Game Instance { get; private set; }

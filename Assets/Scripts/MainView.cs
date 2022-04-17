@@ -20,7 +20,6 @@ namespace DefaultNamespace
 
         private void StartButtonClick()
         {
-            Debug.Log("test");
             Game.Instance.UIService.Hide(UIView.Main);
             Game.Instance.UIService.Show(UIView.Result);
         }
