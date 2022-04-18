@@ -1,22 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Transform _camera;
+    [SerializeField] private float _speed;
+    [SerializeField] private CameraFollow _camera;
+    
     private Rigidbody _rigidbody;
+
+    public float Speed => _speed;
 
     private void Start()
     {
         if (!_camera)
         {
-            _camera = Game.Instance.Camera.transform;
-            Debug.LogError("ERROR Camera in PlayerMovement is null.");
+            _camera = Game.Instance.Camera.GetComponent<CameraFollow>();
+            _camera.FollowTransform = transform;
         }
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
 
         var direction = new Vector3(horizontal, 0f, vertical);
-        var moveDirection = _camera.rotation * direction;
+        var moveDirection = _camera.transform.rotation * direction * _speed;
         moveDirection.y = 0f;
         _rigidbody.AddForce(moveDirection);
     }

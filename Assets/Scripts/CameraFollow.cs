@@ -1,22 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] 
-    private Transform _followTransform;
+    public Transform FollowTransform;
     
-    [SerializeField]
-    private Vector3 _offset;
+    [SerializeField] private Vector3 _offset;
     
     private void Update()
     {
-        if(_followTransform)
+        if(FollowTransform)
         {
-            transform.position = _followTransform.position + _offset;
-            transform.LookAt(_followTransform);
+            transform.position = FollowTransform.position + _offset;
+            transform.LookAt(FollowTransform);
         }
     }
 }

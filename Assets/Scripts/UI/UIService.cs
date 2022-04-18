@@ -6,7 +6,7 @@ namespace UI
     public class UIService : IUIService
     {
         private readonly Dictionary<UIView, View> _views;
-        
+
         public UIService(UIPreset uiPreset)
         {
             _views = new Dictionary<UIView, View>();
